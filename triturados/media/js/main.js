@@ -1,4 +1,5 @@
 jQuery(document).on('ready',function(){
- alert("Prueba");
-jQuery("#id_fecha").datepicker();
+
+jQuery("#id_fecha").datepicker({formatDate: 'dd/MM/yy'});
+
 })

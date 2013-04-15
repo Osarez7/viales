@@ -1,0 +1,56 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Gestion Triturados Viales
+{% endblock title %}
+{% block description %}
+	Home de gestion
+{% endblock description %}
+{% block content %}
+
+
+
+<section> 
+<h2>Pedidos</h2>
+
+<a href="/pedido/nuevo">Nuevo Pedido</a>
+
+<table class='grid' >
+<tr valign="middle" id="header">
+  <th><a href="/pedido/detalle/{{ pedido.id}}">N Pedido</a></th>
+  <th>Fecha Pedido</th>
+  <th>Fecha Entrega</th>
+  <th>Estado</th>
+</tr>
+{% for pedido in pedidos %}
+<tr>
+  <td>{{ pedido.consecutivo }}</td>
+  <td>{{ pedido.fechaPedido }}</td>
+  <td>{{ pedido.activo }}</td>
+  <td></td>
+  <td></td>
+</tr>
+
+{% empty %}
+ <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+{% endfor %}
+
+</table>
+
+<div id='grid_table'></div>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+ <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
+  <script src="/media/libs/grid/pqgrid.min.js"></script>	
+  <script src="/media/js/init_grid.js"></script>	
+{% endblock custom_scripts %}

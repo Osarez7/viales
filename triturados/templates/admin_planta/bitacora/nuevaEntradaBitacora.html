@@ -1,0 +1,28 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Nueva Bitacora
+{% endblock title %}
+{% block description %}
+	Registro de nueva entrada en la bitacora
+{% endblock description %}
+{% block content %}
+
+<section> 
+<h2>Nueva Entrada </h2>
+
+ <form action="{% url 'nuevo_despacho' id_planta%}" method ="POST">
+{% csrf_token %}
+{{ formulario.as_p }}
+<input type="submit" value="Agregar">
+</form>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+ <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
+  <script src="/media/libs/grid/pqgrid.min.js"></script>	
+  <script src="/media/js/init_grid.js"></script>	
+{% endblock custom_scripts %}

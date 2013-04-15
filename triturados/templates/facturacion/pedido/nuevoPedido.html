@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Crear Pedido{% endblock title %}
+{% block description %}Creacion de pedidos{% endblock description %}
+{% block content %}
+Bienvenido - {{ user.username }}<br><br>
+<form action="" method ="POST">
+{% csrf_token %}
+{{ formulario.as_p }}
+
+
+<a id='btn-add-producto' class='btn' href="">Adicionar Producto</a>
+
+
+<div id='content-productos'>
+
+
+	
+</div>
+
+
+<input type="submit" value="Agregar">
+</form>
+{% endblock content %}

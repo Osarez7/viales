@@ -1,0 +1,55 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Gestion Triturados Viales
+{% endblock title %}
+{% block description %}
+	Home de gestion
+{% endblock description %}
+{% block content %}
+
+<section> 
+<h2>Despachos {{ planta.nombre }} </h2>
+
+<a href="/{{ id_planta }}/despacho/nuevo">Nuevo Despacho</a>
+
+<table class='grid' >
+<tr valign="middle" id="header">
+ <th>Remision</th>
+  <th>Fecha</th>
+  <th>Cantidad</th>
+  <th>Cliente</th>
+  <th>Obra</th>
+</tr>
+{% for despacho in despachos %}
+<tr>
+  <td>{{ despacho.remision }}</td>
+  <td>{{ despacho.fecha }}</td>
+  <td>{{ despacho.cantidad }}</td>
+  <td></td>
+  <td></td>
+</tr>
+
+{% empty %}
+ <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+{% endfor %}
+
+</table>
+
+<div id='grid_table'></div>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+ <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
+  <script src="/media/libs/grid/pqgrid.min.js"></script>	
+  <script src="/media/js/init_grid.js"></script>	
+{% endblock custom_scripts %}

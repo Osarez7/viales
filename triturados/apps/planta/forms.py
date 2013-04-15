@@ -20,6 +20,7 @@ class ProgramacionForm(forms.Form):
       
 
 class PedidoForm(ModelForm):
+    items = forms.CharField(widget = forms.HiddenInput(), required=True)
     class Meta: 
         model = Pedido
 #Campos que se mostraran
@@ -27,8 +28,20 @@ class PedidoForm(ModelForm):
 # exclude = ('usuario', 'disponible',) <- Datos que se excluirán. Sirve de la misma manera las dos formas
 
 class  DespachoForm(forms.Form):
-    nombre = forms.CharField(widget = forms.TextInput(), required=True)
-    fecha = forms.DateField(widget = widgets.AdminDateWidget, required=True)
+         remision = forms.CharField(widget = forms.TextInput(), required=True)
+         cantidad =  forms.CharField(widget = forms.TextInput(), required=True)
+         fecha =  forms.DateField()
+         planta  =  forms.IntegerField(widget = forms.HiddenInput(), required=True)
+
+class RangoFechaForm(forms.Form):
+     fechaInicial = forms.DateField()
+     fechaFinal = forms.DateField()
+
+           
+
+
+
     
+
 #Campos que se mostraran
         
