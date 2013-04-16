@@ -13,8 +13,14 @@ urlpatterns = patterns('',
     url(r'^(?P<id_planta>.*)/despacho/nuevo', 'triturados.apps.planta.views.nuevoDespacho', name='nuevo_despacho'),
     url(r'^(?P<id_planta>.*)/despachos/', 'triturados.apps.planta.views.indexDespachos', name='index_despachos'),
     url(r'^pedido/nuevo', 'triturados.apps.planta.views.ingresoPedido', name='nuevo_pedido'),
+    url(r'^pedido/detalle/(?P<id_pedido>.*)$', 'triturados.apps.planta.views.verDetallePedido', name='detalle_pedido'),  
     url(r'^pedidos/', 'triturados.apps.planta.views.indexPedidos', name='index_pedidos'),
+
+   
+    
     url(r'^indexProgramacion/', 'triturados.apps.planta.views.indexProgramacion', name='index_programacion'),
+    url(r'^programar/(?P<id_item_pedido>.*)$', 'triturados.apps.planta.views.programarItemPedido', name='programar_item'),  
+    url(r'^programacion/(?P<id_pedido>.*)$/agendar', 'triturados.apps.planta.views.indexProgramacion', name='index_programacion'),
     url(r'^bitacora/nuevo/registro', 'triturados.apps.planta.views.registroBitacora', name='registro_bitacora'),
     url(r'^bitacora/nuevo/registro', 'triturados.apps.planta.views.indexBitacora', name='index_bitacora'),
 

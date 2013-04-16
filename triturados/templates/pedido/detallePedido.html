@@ -1,0 +1,44 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Gestion Triturados Viales
+{% endblock title %}
+{% block description %}
+	Home de gestion
+{% endblock description %}
+{% block content %}
+
+<section> 
+<h2>Pedidos {{ pedido.consecutivo }}</h2>
+  
+
+    <table class='grid'>
+     <tr>
+      <th>Obra</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th></th>
+     </tr>
+
+    {% for item in lstItemsPedido %}
+
+      <tr class='item'>
+      <td>{{ item.obra }} </td>
+      <td>{{ item.producto }} </td>
+      <td>{{ item.cantidad }} </td>
+      <td><a href="/programar/{{ item.id }}" class='button'>Programar</a></td>
+     </tr>
+
+    {% endfor %}
+     </table>
+     <br>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+  	
+{% endblock custom_scripts %}
+
+

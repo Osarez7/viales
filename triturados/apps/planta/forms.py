@@ -2,22 +2,21 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.admin import widgets
-from triturados.apps.planta.models import Cliente, Producto, Planta, Obra, Pedido,ItemPedido, Despacho
+from triturados.apps.planta.models import Cliente, Producto, Planta, Obra, Pedido,ItemPedido, Despacho, Programacion
 
 class ClienteForm(ModelForm):
     class Meta:
         model = Cliente
-
 
 class ObraForm(forms.Form):
     nombre = forms.CharField(widget = forms.TextInput(), required=True)
     descripcion = forms.CharField(widget = forms.Textarea(), label="Descripción", required=True)
     categoria = forms.ModelChoiceField(queryset=Cliente.objects.all(), required=True, label="Cliente")
 
-class ProgramacionForm(forms.Form):
-     nombre = forms.CharField(widget = forms.TextInput(), required=True)
-     descripcion = forms.CharField(widget = forms.Textarea(), label="Descripción", required=True)
-      
+class ProgramacionForm(ModelForm):
+    class Meta: 
+        model = Programacion
+        exclude = ('itemPedido')   
 
 class PedidoForm(ModelForm):
     class Meta: 
@@ -33,6 +32,11 @@ class ItemPedidoForm(ModelForm):
         model = ItemPedido
 #Campos que se mostraran
         exclude = ('pedido') 
+
+
+class  ConsecutivoItemForm(forms.Form):
+         
+         consecutivo  =  forms.IntegerField(widget = forms.HiddenInput(), required=True)
 
 
 class  DespachoForm(forms.Form):

@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext # For CSRF
 from triturados.apps.planta.models import Producto, Despacho, Planta, Pedido, ItemPedido
 from django.contrib.auth.decorators import login_required
-from triturados.apps.planta.forms import PedidoForm, DespachoForm, ItemPedidoForm
+from triturados.apps.planta.forms import PedidoForm, DespachoForm, ItemPedidoForm, ProgramacionForm, ConsecutivoItemForm
 from django.http import HttpResponseRedirect
 
 
@@ -30,9 +30,42 @@ def registroBitacora(request):
     ctx = {}
     return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
 
-def editarProgramacion(request):
-    ctx = {}
-    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+def programarItemPedido(request,id_item_pedido):
+    # This class is used to make empty formset forms required
+    # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
+    
+
+
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False  
+    ProgramacionFormSet = formset_factory(ProgramacionForm, max_num=10, formset=RequiredFormSet)
+    if request.method == 'POST': # If the form has been submitted...
+        programacion_formset = ProgramacionFormSet(request.POST, request.FILES)
+        formulario = ConsecutivoItemForm(request.POST)
+
+        if programacion_formset.is_valid() and formulario.is_valid():
+            for form in programacion_formset.forms:
+                programacion = form.save(commit=False)
+    
+                programacion.itemPedido_id = formulario.cleaned_data['consecutivo']
+                programacion.save()
+            return HttpResponseRedirect('/pedidos') # Redirect to a 'success' page
+        else:
+            return render_to_response('pedido/nuevoPedido.html')    
+    else:
+        programacion_formset = ProgramacionFormSet()
+
+    # For CSRF protection
+    # See http://docs.djangoproject.com/en/dev/ref/contrib/csrf/ 
+    c = {
+         'programacion_formset': programacion_formset,
+         'consecutivo_item_form': ConsecutivoItemForm(initial={'consecutivo':id_item_pedido})       }
+    c.update(csrf(request))
+
+    return render_to_response('programacion/programarItem.html', c)
 
 
 
@@ -50,6 +83,7 @@ def nuevoDespacho(request,id_planta):
     formulario = DespachoForm(initial={'planta':id_planta})
     if request.method == "POST":
         formulario = DespachoForm(request.POST)
+
         if formulario.is_valid():
             
             d = Despacho()
@@ -118,8 +152,9 @@ def nuevosItems(items , pedido_id ):
 
 
 def indexPedidos(request):
-    ctx = {}
-    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+    lstPedidos = Pedido.objects.all().order_by('-fechaPedido');
+    ctx = {'lstPedidos': lstPedidos}
+    return render_to_response('pedido/indexPedido.html', ctx ,context_instance = RequestContext(request))
 
 
 
@@ -144,7 +179,7 @@ def ingresoPedido(request):
                 pedido_item = form.save(commit=False)
                 pedido_item.pedido = pedido
                 pedido_item.save()
-            return HttpResponseRedirect('/') # Redirect to a 'success' page
+            return HttpResponseRedirect('/pedidos') # Redirect to a 'success' page
         else:
             return render_to_response('pedido/nuevoPedido.html')    
     else:
@@ -160,3 +195,8 @@ def ingresoPedido(request):
 
     return render_to_response('pedido/nuevoPedido.html', c)
 
+def verDetallePedido(request,id_pedido):
+    pedido = Pedido.objects.filter(pk=id_pedido);
+    lstItemsPedido = ItemPedido.objects.filter(pedido=pedido);
+    ctx = {'lstItemsPedido': lstItemsPedido, 'pedido':pedido}
+    return render_to_response('pedido/detallePedido.html', ctx ,context_instance = RequestContext(request))

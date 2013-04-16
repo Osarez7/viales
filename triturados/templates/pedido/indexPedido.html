@@ -1,0 +1,47 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Gestion Triturados Viales
+{% endblock title %}
+{% block description %}
+	Home de gestion
+{% endblock description %}
+{% block content %}
+
+<section> 
+<h2>Pedidos </h2>  
+
+ <a  class='button icon add' href="/pedido/nuevo">Nuevo Pedido</a>
+  
+    <table class='grid'>
+     <tr>
+      <th>Consecutivo</th>
+      <th>Fecha</th>
+      <th>Cliente</th>
+      <th></th>
+     </tr>
+
+    {% for pedido in lstPedidos %}
+
+      <tr class='item'>
+      <td>{{ pedido.consecutivo }} </td>
+      <td>{{ pedido.fechaPedido }} </td>
+      <td>{{ pedido.cliente }} </td>
+      <td>
+      	<a  class='button' href="/pedido/detalle/{{ pedido.id }}"> Detalle</a>
+      </td>
+     </tr>
+
+    {% endfor %}
+     </table>
+     <br>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+  <script src="/media/js/pedido.js"></script>	
+{% endblock custom_scripts %}
+
+

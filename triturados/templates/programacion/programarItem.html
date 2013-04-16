@@ -8,42 +8,37 @@
 {% block content %}
 
 <section> 
-<h2>Nuevo pedido</h2>
-<form action="/pedido/nuevo" method="POST">{% csrf_token %}
-    
+<h2>Programar  {{ id_item_pedido}} </h2>
 
-    <div class="form_head">
-        {{ pedido_form.as_ul }}
-    </div>
-    <div id='item-content'>
-    
-       
-    
-    {{ item_pedido_formset.management_form }}
+<a class='button icon add'id="add" href="#">Adicionar</a> 
+
+<form action="/programar/{{ id_item_pedido }}" method="POST">{% csrf_token %}
+     
+   {{ consecutivo_item_form.as_p}}
+
+
+    {{ programacion_formset.management_form }}
     
     <table>
      <tr>
-      <th>Obra</th>
-      <th>Producto</th>
+      <th>Planta</th>
       <th>Cantidad</th>
       <th></th>
      </tr>
 
-    {% for form in item_pedido_formset.forms %}
+    {% for form in programacion_formset.forms %}
 
       <tr class='item'>
-      <td>{{ form.obra }} {{ form.obra.errors }}</td>
-      <td>{{ form.producto }} {{ form.producto.errors }}</td>
-      <td>{{ form.cantidad }} {{ form.cantidad.errors }}</td>
+      <td>{{ form.planta }} {{ form.planta.errors }}</td>
+      <td>{{ form.cantidad }} {{ form.cantidad.errors }}</td>  
       <td><p style=""><a class="delete button danger icon trash" href="#">Borrar</a></p></td>
      </tr>
 
     {% endfor %}
      </table>
      <br>
-    <a class='button icon add'id="add" href="#">Adicionar</a> 
-  </div>
-    <br><br>
+    
+  
 
     <input class='button icon approve' type="submit" value=" Enviar " />
 
