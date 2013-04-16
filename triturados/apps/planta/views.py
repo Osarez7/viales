@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
-from triturados.apps.planta.models import Producto, Despacho, Planta
-from django.contrib.auth.decorators import login_required
-from triturados.apps.planta.forms import PedidoForm, DespachoForm
-from django.http import HttpResponseRedirect
 import datetime
 import json
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext # For CSRF
+from triturados.apps.planta.models import Producto, Despacho, Planta, Pedido, ItemPedido
+from django.contrib.auth.decorators import login_required
+from triturados.apps.planta.forms import PedidoForm, DespachoForm, ItemPedidoForm
+from django.http import HttpResponseRedirect
+
+
+from django.core.context_processors import csrf 
+from django.forms.formsets import formset_factory, BaseFormSet
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 def home(request):
     ctx = {}
@@ -15,6 +21,21 @@ def home(request):
 def index(request):
     ctx = {}
     return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+
+def indexBitacora(request):
+    ctx = {}
+    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+
+def registroBitacora(request):
+    ctx = {}
+    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+
+def editarProgramacion(request):
+    ctx = {}
+    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+
+
+
 
 def indexDespachos(request,id_planta):
     #fecha=datetime.date.today(),
@@ -94,3 +115,48 @@ def nuevosItems(items , pedido_id ):
         itemObj.pedido_id = pedido_id
         itemObj.pruducto_id = item.cantidad
         itemObj.save()
+
+
+def indexPedidos(request):
+    ctx = {}
+    return render_to_response('home/index-privado.html', ctx ,context_instance = RequestContext(request))
+
+
+
+
+def ingresoPedido(request):
+    # This class is used to make empty formset forms required
+    # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+    ItemPedidoFormSet = formset_factory(ItemPedidoForm, max_num=10, formset=RequiredFormSet)
+    if request.method == 'POST': # If the form has been submitted...
+        pedido_form = PedidoForm(request.POST) # A form bound to the POST data
+        # Create a formset from the submitted data
+        item_pedido_formset = ItemPedidoFormSet(request.POST, request.FILES)
+
+        if pedido_form.is_valid() and item_pedido_formset.is_valid():
+            pedido = pedido_form.save()
+            for form in item_pedido_formset.forms:
+                pedido_item = form.save(commit=False)
+                pedido_item.pedido = pedido
+                pedido_item.save()
+            return HttpResponseRedirect('/') # Redirect to a 'success' page
+        else:
+            return render_to_response('pedido/nuevoPedido.html')    
+    else:
+        pedido_form = PedidoForm()
+        item_pedido_formset = ItemPedidoFormSet()
+
+    # For CSRF protection
+    # See http://docs.djangoproject.com/en/dev/ref/contrib/csrf/ 
+    c = {'pedido_form':  pedido_form,
+         'item_pedido_formset': item_pedido_formset
+        }
+    c.update(csrf(request))
+
+    return render_to_response('pedido/nuevoPedido.html', c)
+

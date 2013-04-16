@@ -2,7 +2,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.admin import widgets
-from triturados.apps.planta.models import Cliente, Producto, Planta, Obra, Pedido, Despacho
+from triturados.apps.planta.models import Cliente, Producto, Planta, Obra, Pedido,ItemPedido, Despacho
 
 class ClienteForm(ModelForm):
     class Meta:
@@ -20,12 +20,20 @@ class ProgramacionForm(forms.Form):
       
 
 class PedidoForm(ModelForm):
-    items = forms.CharField(widget = forms.HiddenInput(), required=True)
     class Meta: 
         model = Pedido
 #Campos que se mostraran
         fields = ('cliente','fechaPedido','fechaEntrea','consecutivo')
 # exclude = ('usuario', 'disponible',) <- Datos que se excluirán. Sirve de la misma manera las dos formas
+
+
+
+class ItemPedidoForm(ModelForm):
+    class Meta: 
+        model = ItemPedido
+#Campos que se mostraran
+        exclude = ('pedido') 
+
 
 class  DespachoForm(forms.Form):
          remision = forms.CharField(widget = forms.TextInput(), required=True)

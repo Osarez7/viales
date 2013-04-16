@@ -40,7 +40,7 @@ class Planta(models.Model):
       
 class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente)
-    fechaPedido = models.DateTimeField()
+    fechaPedido = models.DateField()
     fechaEntrea = models.DateField()
     consecutivo = models.CharField(max_length=100, unique=True)
     activo = models.BooleanField()
