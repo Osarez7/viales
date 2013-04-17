@@ -1,0 +1,59 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Programacion  
+{% endblock title %}
+{% block description %}
+	Home de gestion
+{% endblock description %}
+{% block content %}
+
+
+
+<section> 
+<h2>Programacion </h2>
+
+<div class='encabezado_detalle'>
+   <p>Obra {{ item_pedido.obra}}</p>
+   <p>Producto {{ item_pedido.producto}}</p>
+   <p>Cantidad {{ item_pedido.cantidad}}</p> 
+</div>
+
+<table class='grid' >
+<tr valign="middle" id="header">
+      <th>Planta</th>
+      <th>Cantidad</th>
+      <th></th>
+     </tr>
+</tr>
+{% for programacion in lstProgramacion %}
+<tr>
+  <td>{{ programacion.planta }}</td>
+  <td>{{ programacion.cantidad }}</td>
+  <td><a href="" class='button icon trash danger'>Borrar</a></td>
+
+</tr>
+
+{% empty %}
+ <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+{% endfor %}
+
+</table>
+
+<div id='grid_table'></div>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+ <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
+  <script src="/media/libs/grid/pqgrid.min.js"></script>	
+  <script src="/media/js/init_grid.js"></script>	
+{% endblock custom_scripts %}

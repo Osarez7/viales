@@ -41,7 +41,7 @@ class Planta(models.Model):
 class Pedido(models.Model):
     cliente = models.ForeignKey(Cliente)
     fechaPedido = models.DateField()
-    fechaEntrea = models.DateField()
+    fechaEntrega = models.DateField()
     consecutivo = models.CharField(max_length=100, unique=True)
     activo = models.BooleanField()
     def __unicode__(self):
@@ -69,6 +69,7 @@ class Programacion(models.Model):
     itemPedido = models.ForeignKey(ItemPedido) 
     planta = models.ForeignKey(Planta) 
     cantidad = models.IntegerField()
+    fecha = models.DateField()
 
 class Maquina(models.Model):
     nombre = models.CharField(max_length=100, unique=True)  
@@ -86,7 +87,8 @@ class Vehiculo(models.Model):
         return self.placa 
 
 class Despacho(models.Model):
-    planta = models.ForeignKey(Planta) 
+    programacion = models.ForeignKey(Planta) 
+    vehiculo = models.ForeignKey(Vehiculo)
     cantidad = models.IntegerField()
     fecha =  models.DateField()
     remision = models.CharField(max_length=100, unique=True)

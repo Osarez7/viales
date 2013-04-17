@@ -22,7 +22,7 @@ class PedidoForm(ModelForm):
     class Meta: 
         model = Pedido
 #Campos que se mostraran
-        fields = ('cliente','fechaPedido','fechaEntrea','consecutivo')
+        fields = ('cliente','fechaPedido','fechaEntrega','consecutivo')
 # exclude = ('usuario', 'disponible',) <- Datos que se excluirán. Sirve de la misma manera las dos formas
 
 
@@ -39,11 +39,10 @@ class  ConsecutivoItemForm(forms.Form):
          consecutivo  =  forms.IntegerField(widget = forms.HiddenInput(), required=True)
 
 
-class  DespachoForm(forms.Form):
-         remision = forms.CharField(widget = forms.TextInput(), required=True)
-         cantidad =  forms.CharField(widget = forms.TextInput(), required=True)
-         fecha =  forms.DateField()
-         planta  =  forms.IntegerField(widget = forms.HiddenInput(), required=True)
+class  DespachoForm(ModelForm):
+        class Meta: 
+            model = Despacho
+            exclude = ('programacion') 
 
 class RangoFechaForm(forms.Form):
      fechaInicial = forms.DateField()

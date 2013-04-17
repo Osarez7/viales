@@ -1,0 +1,58 @@
+{% extends "base-privado.html" %}
+{% block title %}
+	Programacion  {{ planta.nombre}}
+{% endblock title %}
+{% block description %}
+	Programacion  {{ planta.nombre}}
+{% endblock description %}
+{% block content %}
+
+
+
+<section> 
+<h2>Programacion {{ planta.nombre}}</h2>
+
+<table class='grid' >
+<tr valign="middle" id="header">
+      <th>Cliente</th>
+      <th>Obra</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Fecha</th>
+      <th></th>
+     </tr>
+</tr>
+{% for programacion in lstProgramacion %}
+<tr>
+  <td>{{ programacion.itemPedido.pedido.cliente }}</td>
+  <td>{{ programacion.itemPedido.obra  }}</td>
+  <td>{{ programacion.itemPedido.producto }}</td>
+  <td>{{ programacion.cantidad }}</td>
+  <td>{{ programacion.fecha }}</td> 
+  <td> <a class='button' href="/despacho/nuevo/{{programacion.id}}">Crear Despacho</a> </td>
+</tr>
+
+{% empty %}
+ <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+{% endfor %}
+
+</table>
+
+<div id='grid_table'></div>
+
+</section>
+
+ 	
+{% endblock content %}
+
+{% block custom_scripts %}
+ <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
+  <script src="/media/libs/grid/pqgrid.min.js"></script>	
+  <script src="/media/js/init_grid.js"></script>	
+{% endblock custom_scripts %}

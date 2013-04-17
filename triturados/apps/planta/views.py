@@ -3,7 +3,7 @@ import datetime
 import json
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext # For CSRF
-from triturados.apps.planta.models import Producto, Despacho, Planta, Pedido, ItemPedido
+from triturados.apps.planta.models import Producto, Despacho, Planta, Pedido, ItemPedido, Programacion
 from django.contrib.auth.decorators import login_required
 from triturados.apps.planta.forms import PedidoForm, DespachoForm, ItemPedidoForm, ProgramacionForm, ConsecutivoItemForm
 from django.http import HttpResponseRedirect
@@ -34,7 +34,7 @@ def programarItemPedido(request,id_item_pedido):
     # This class is used to make empty formset forms required
     # See http://stackoverflow.com/questions/2406537/django-formsets-make-first-required/4951032#4951032
     
-
+   
 
     class RequiredFormSet(BaseFormSet):
         def __init__(self, *args, **kwargs):
@@ -49,18 +49,19 @@ def programarItemPedido(request,id_item_pedido):
         if programacion_formset.is_valid() and formulario.is_valid():
             for form in programacion_formset.forms:
                 programacion = form.save(commit=False)
-    
                 programacion.itemPedido_id = formulario.cleaned_data['consecutivo']
                 programacion.save()
-            return HttpResponseRedirect('/pedidos') # Redirect to a 'success' page
+            return HttpResponseRedirect('/indexProgramacion/%i' % formulario.cleaned_data['consecutivo']) # Redirect to a 'success' page
         else:
-            return render_to_response('pedido/nuevoPedido.html')    
+            return HttpResponseRedirect('/pedidos')    
     else:
         programacion_formset = ProgramacionFormSet()
+        item_pedido =  ItemPedido.objects.get(pk=id_item_pedido)
 
     # For CSRF protection
     # See http://docs.djangoproject.com/en/dev/ref/contrib/csrf/ 
     c = {
+         'item_pedido' : item_pedido,
          'programacion_formset': programacion_formset,
          'consecutivo_item_form': ConsecutivoItemForm(initial={'consecutivo':id_item_pedido})       }
     c.update(csrf(request))
@@ -74,46 +75,68 @@ def indexDespachos(request,id_planta):
     #fecha=datetime.date.today(),
     #planta  = Despacho.objects.get(id=id_planta)
     request.user
-    despachos = Despacho.objects.filter(planta_id=id_planta).order_by('-id');
+    lstProgramacion = Programacion.objects.filter(planta_id=id_planta)
+    despachos = Despacho.objects.filter(id_in=lstProgramacion).order_by('-id');
     ctx = {'despachos':despachos,'id_planta':id_planta}
   
     return render_to_response('admin_planta/despachoIndex.html', ctx ,context_instance = RequestContext(request))
 
-def nuevoDespacho(request,id_planta):
-    formulario = DespachoForm(initial={'planta':id_planta})
-    if request.method == "POST":
-        formulario = DespachoForm(request.POST)
+def nuevoDespacho(request,id_programacion):
 
-        if formulario.is_valid():
+    
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+    DespachoFormSet = formset_factory(DespachoForm, max_num=10, formset=RequiredFormSet)
+    if request.method == 'POST': # If the form has been submitted...
+        
+        formulario = ConsecutivoItemForm(request.POST)
+        despacho_formset =  DespachoFormSet(request.POST, request.FILES)
+
+        if  despacho_formset.is_valid() and formulario.is_valid():
             
-            d = Despacho()
-            d.planta_id = formulario.cleaned_data['planta']
-            d.cantidad = formulario.cleaned_data['cantidad']
-            d.fecha = formulario.cleaned_data['fecha']
-            d.remision= formulario.cleaned_data['remision']
-            d.save()
-            return HttpResponseRedirect('/%s/despachos' % id_planta)
-   
-    ctx = {'formulario':formulario, 'id_planta':id_planta}
-    return render_to_response('admin_planta/despacho/nuevoDespacho.html', ctx ,context_instance = RequestContext(request))
+            for form in despacho_formset.forms:
+                despacho = form.save(commit=False)
+                despacho.programacion_id = formulario.cleaned_data['consecutivo']
+                despacho.save()
+            return HttpResponseRedirect('/despachos/%i' % formulario.cleaned_data['consecutivo']) # Redirect to a 'success' page
+        else:
+            return HttpResponseRedirect('/') # Redirect to a 'success' page  
+    else:
+        programacion = Programacion.objects.get(pk=id_programacion)
+        consecutivo_form = ConsecutivoItemForm(initial={'consecutivo': id_programacion})
+        despacho_formset = DespachoFormSet ()
+
+    # For CSRF protection
+    # See http://docs.djangoproject.com/en/dev/ref/contrib/csrf/ 
+    c = {'consecutivo_form': consecutivo_form,
+         'despacho_formset': despacho_formset,
+         'programacion' : programacion
+        }
+    c.update(csrf(request))
+
+    return render_to_response('admin_planta/despacho/nuevoDespacho.html', c)
+ 
 
 
 
-
-def indexProgramacion(request):
+def indexProgramacion(request,id_item_pedido):
+    item_pedido =  ItemPedido.objects.get(pk=id_item_pedido)
+    lstProgramacion = Programacion.objects.filter(itemPedido_id=id_item_pedido).order_by('-id')
+    ctx = {'item_pedido':item_pedido,'lstProgramacion':lstProgramacion}
   
-    despachos = Programacion.objects.all().order_by('-id');
-    ctx = {'despachos':despachos,}
-  
-    return render_to_response('admin_planta/despacho/despachoIndex.html', ctx ,context_instance = RequestContext(request))
+    return render_to_response('programacion/indexProgramacionItem.html', ctx ,context_instance = RequestContext(request))
 
 
 def indexProgramacionPlanta(request,id_planta):
    
-    programacion = Programacion.objects.filter(planta_id=id_planta).order_by('-id');
-    ctx = {'programacion':programacion,'id_planta':id_planta}
-  
-    return render_to_response('admin_planta/despacho/despachoIndex.html', ctx ,context_instance = RequestContext(request))
+    planta = Planta.objects.get(pk=id_planta)
+    lstProgramacion = Programacion.objects.select_related().filter(planta_id=id_planta)
+   # lstProgramacion = Programacion.objects.raw('select planta_programacion.*, planta_itempedido.* from planta_programacion inner join planta_itempedido on planta_programacion.itempedido_id = planta_itempedido.id where planta_programacion.planta_id = %s' % id_planta)
+    ctx = {'lstProgramacion':lstProgramacion,'id_planta':id_planta, 'planta': planta } 
+    return render_to_response('programacion/indexProgramacionPlanta.html', ctx ,context_instance = RequestContext(request))
 
 
 def nuevoPedido(request):
@@ -122,14 +145,14 @@ def nuevoPedido(request):
         form = PedidoForm(request.POST)
         if form.is_valid():
             fechaPedido = form.cleaned_data['fechaPedido']
-            fechaEntrea = form.cleaned_data['fechaEntrea']
+            fechaEntrega = form.cleaned_data['fechaEntrega']
             cliente = form.cleaned_data['cliente'].id
             consecutivo = form.cleaned_data['consecutivo']
             items  = json.loads(form.cleaned_data['items']) 
 
             p = Pedido()
             p.fechaPedido = fechaPedido
-            p.fechaEntrea = fechaEntrea
+            p.fechaEntrega = fechaEntrega
             p.cliente_id = cliente 
             p.consecutivo = consecutivo
             p.save()

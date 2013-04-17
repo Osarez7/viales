@@ -9,6 +9,8 @@
 
 <section> 
 <h2>Programar  {{ id_item_pedido}} </h2>
+<p>Producto {{ item_pedido.producto}}</p>
+<p>Cantidad {{ item_pedido.cantidad}}</p>
 
 <a class='button icon add'id="add" href="#">Adicionar</a> 
 
@@ -23,6 +25,7 @@
      <tr>
       <th>Planta</th>
       <th>Cantidad</th>
+      <th>Fecha</th>
       <th></th>
      </tr>
 
@@ -30,7 +33,8 @@
 
       <tr class='item'>
       <td>{{ form.planta }} {{ form.planta.errors }}</td>
-      <td>{{ form.cantidad }} {{ form.cantidad.errors }}</td>  
+      <td>{{ form.cantidad }} {{ form.cantidad.errors }}</td>   
+         <td>{{ form.fecha }} {{ form.fecha.errors }}</td>  
       <td><p style=""><a class="delete button danger icon trash" href="#">Borrar</a></p></td>
      </tr>
 

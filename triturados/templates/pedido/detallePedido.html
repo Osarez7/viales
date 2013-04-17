@@ -25,7 +25,10 @@
       <td>{{ item.obra }} </td>
       <td>{{ item.producto }} </td>
       <td>{{ item.cantidad }} </td>
-      <td><a href="/programar/{{ item.id }}" class='button'>Programar</a></td>
+      <td>
+        <a href="/indexProgramacion/{{ item.id }}" class='button'>Ver Programacion</a>
+        <a href="/programar/{{ item.id }}" class='button'>Programar</a>
+      </td>
      </tr>
 
     {% endfor %}

@@ -1,0 +1,1093 @@
+[
+{
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "site", 
+        "name": "site", 
+        "app_label": "sites"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "producto", 
+        "name": "producto", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "cliente", 
+        "name": "cliente", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "obra", 
+        "name": "obra", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "planta", 
+        "name": "planta", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "pedido", 
+        "name": "pedido", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "clienteproducto", 
+        "name": "cliente producto", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "itempedido", 
+        "name": "item pedido", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "programacion", 
+        "name": "programacion", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 16, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "maquina", 
+        "name": "maquina", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 17, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "vehiculo", 
+        "name": "vehiculo", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 18, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "despacho", 
+        "name": "despacho", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": 19, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "anticipo", 
+        "name": "anticipo", 
+        "app_label": "planta"
+    }
+},
+{
+    "pk": "4wjhn4q2c7makne2a99fx0d9gluf7m1n", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-05-01T17:43:46Z", 
+        "session_data": "NzQ3MjgxYzQ0ZmY4NWZlYWY3Y2UwMWU1MTIzMzVhZTQ0MTRmNTkyMDqAAn1xAS4="
+    }
+},
+{
+    "pk": "b9p3e5x15lmna2lpsgm03vno74t5fd41", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2013-05-01T17:45:27Z", 
+        "session_data": "NzE0YWY2ODkzZmQ4NTgzN2ZmNzc0OGZkZTNlZmZlMTdmODliYWQzNzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQSKAQF1Lg=="
+    }
+},
+{
+    "pk": 1, 
+    "model": "sites.site", 
+    "fields": {
+        "domain": "example.com", 
+        "name": "example.com"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.producto", 
+    "fields": {
+        "nombre": "Arena", 
+        "referencia": "a", 
+        "desc": "Arena"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.producto", 
+    "fields": {
+        "nombre": "Gravilla gruesa", 
+        "referencia": "GG", 
+        "desc": "Gravilla gruesa"
+    }
+},
+{
+    "pk": 3, 
+    "model": "planta.producto", 
+    "fields": {
+        "nombre": "Gravilla fina", 
+        "referencia": "GF", 
+        "desc": "Gravilla fina"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.cliente", 
+    "fields": {
+        "descripcion": "Cusezar", 
+        "nombre": "Cusezar"
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.cliente", 
+    "fields": {
+        "descripcion": "Tremix", 
+        "nombre": "Tremix"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.obra", 
+    "fields": {
+        "descripcion": "Obra c1", 
+        "nombre": "Obra c1", 
+        "cliente": 1, 
+        "disponible": true
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.obra", 
+    "fields": {
+        "descripcion": "Obra c2", 
+        "nombre": "Obra c2", 
+        "cliente": 2, 
+        "disponible": true
+    }
+},
+{
+    "pk": 3, 
+    "model": "planta.obra", 
+    "fields": {
+        "descripcion": "Obra t1", 
+        "nombre": "Obra t1", 
+        "cliente": 2, 
+        "disponible": true
+    }
+},
+{
+    "pk": 4, 
+    "model": "planta.obra", 
+    "fields": {
+        "descripcion": "Obra t2", 
+        "nombre": "Obra t2", 
+        "cliente": 2, 
+        "disponible": true
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.pedido", 
+    "fields": {
+        "activo": false, 
+        "consecutivo": "1", 
+        "fechaEntrega": "2013-04-20", 
+        "cliente": 1, 
+        "fechaPedido": "2013-04-15"
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.itempedido", 
+    "fields": {
+        "obra": 1, 
+        "producto": 1, 
+        "pedido": 1, 
+        "cantidad": 34
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.itempedido", 
+    "fields": {
+        "obra": 2, 
+        "producto": 2, 
+        "pedido": 1, 
+        "cantidad": 65
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.programacion", 
+    "fields": {
+        "planta": 1, 
+        "itemPedido": 1, 
+        "fecha": "2013-04-18", 
+        "cantidad": 20
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.programacion", 
+    "fields": {
+        "planta": 1, 
+        "itemPedido": 1, 
+        "fecha": "2013-04-20", 
+        "cantidad": 14
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_site", 
+        "name": "Can add site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_site", 
+        "name": "Can change site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_site", 
+        "name": "Can delete site", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_producto", 
+        "name": "Can add producto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_producto", 
+        "name": "Can change producto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_producto", 
+        "name": "Can delete producto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_cliente", 
+        "name": "Can add cliente", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_cliente", 
+        "name": "Can change cliente", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_cliente", 
+        "name": "Can delete cliente", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_obra", 
+        "name": "Can add obra", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_obra", 
+        "name": "Can change obra", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_obra", 
+        "name": "Can delete obra", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_planta", 
+        "name": "Can add planta", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_planta", 
+        "name": "Can change planta", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_planta", 
+        "name": "Can delete planta", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_pedido", 
+        "name": "Can add pedido", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_pedido", 
+        "name": "Can change pedido", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_pedido", 
+        "name": "Can delete pedido", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_clienteproducto", 
+        "name": "Can add cliente producto", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_clienteproducto", 
+        "name": "Can change cliente producto", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_clienteproducto", 
+        "name": "Can delete cliente producto", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_itempedido", 
+        "name": "Can add item pedido", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_itempedido", 
+        "name": "Can change item pedido", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_itempedido", 
+        "name": "Can delete item pedido", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_programacion", 
+        "name": "Can add programacion", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_programacion", 
+        "name": "Can change programacion", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_programacion", 
+        "name": "Can delete programacion", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_maquina", 
+        "name": "Can add maquina", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_maquina", 
+        "name": "Can change maquina", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_maquina", 
+        "name": "Can delete maquina", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_vehiculo", 
+        "name": "Can add vehiculo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_vehiculo", 
+        "name": "Can change vehiculo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_vehiculo", 
+        "name": "Can delete vehiculo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_despacho", 
+        "name": "Can add despacho", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_despacho", 
+        "name": "Can change despacho", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_despacho", 
+        "name": "Can delete despacho", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_anticipo", 
+        "name": "Can add anticipo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_anticipo", 
+        "name": "Can change anticipo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_anticipo", 
+        "name": "Can delete anticipo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2013-04-17T17:45:27Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$2gmPXtfT4FLS$qlDg6Ty5KwyfUzYTtDv0OMQ7RcU6ygzq1hhPdAc6tEI=", 
+        "email": "admin@admin.com", 
+        "date_joined": "2013-04-17T17:43:31Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "Jefe1", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T17:49:06Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$DDGtAiepstIO$YNtx+3bQDxVNTn9u2KlOlGjAY1DqfQB/JejkhchUgEU=", 
+        "email": "", 
+        "date_joined": "2013-04-17T17:49:06Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "Jefe2", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2013-04-17T17:49:19Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$10000$1A1JfoACRx3s$46lRAGArLjdMmsux66xUumInoOR1lq5wXl6ga9SxkRc=", 
+        "email": "", 
+        "date_joined": "2013-04-17T17:49:19Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:45:47Z", 
+        "object_repr": "Cusezar", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 9
+    }
+},
+{
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:46:00Z", 
+        "object_repr": "Tremix", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 9
+    }
+},
+{
+    "pk": 3, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:46:33Z", 
+        "object_repr": "Obra c1", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 4, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:46:47Z", 
+        "object_repr": "Obra c2", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 5, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:46:59Z", 
+        "object_repr": "Obra t1", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 6, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:47:07Z", 
+        "object_repr": "Obra t2", 
+        "object_id": "4", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 7, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:48:12Z", 
+        "object_repr": "Arena", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 8
+    }
+},
+{
+    "pk": 8, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:48:25Z", 
+        "object_repr": "Gravilla gruesa", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 8
+    }
+},
+{
+    "pk": 9, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:48:47Z", 
+        "object_repr": "Gravilla fina", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 8
+    }
+},
+{
+    "pk": 10, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:49:06Z", 
+        "object_repr": "Jefe1", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 11, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T17:49:19Z", 
+        "object_repr": "Jefe2", 
+        "object_id": "3", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 3
+    }
+},
+{
+    "pk": 12, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T18:04:49Z", 
+        "object_repr": "Suarez", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 13, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2013-04-17T18:05:16Z", 
+        "object_repr": "Caqueza", 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
+    }
+},
+{
+    "pk": 1, 
+    "model": "planta.planta", 
+    "fields": {
+        "ubicacion": "k5", 
+        "nombre": "Suarez", 
+        "jefe": 2, 
+        "producto": [
+            1, 
+            2
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "planta.planta", 
+    "fields": {
+        "ubicacion": "Caqueza k2", 
+        "nombre": "Caqueza", 
+        "jefe": 3, 
+        "producto": [
+            1, 
+            2
+        ]
+    }
+}
+]

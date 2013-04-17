@@ -1,22 +1,60 @@
 {% extends "base-privado.html" %}
 {% block title %}
-	Gestion Triturados Viales
+	Nuevo Despacho
 {% endblock title %}
 {% block description %}
-	Home de gestion
+	Nuevo Despacho
 {% endblock description %}
 {% block content %}
 
 <section> 
-<h2>Nuevo Despacho </h2>
 
-  <form action="{% url 'nuevo_despacho' id_planta%}" method ="POST">
-{% csrf_token %}
-{{ formulario.as_p }}
-<input type="submit" value="Agregar">
+<h2>Nuevo Despacho </h2>
+<p>Producto: {{ programacion.itemPedido.producto }}</p>
+<p>Cantidad: {{ programacion.cantidad }}</p>
+<p>Fecha: {{ programacion.fecha }}</p>
+<p>Cliente: {{ programacion.itemPedido.pedido.cliente }}</p>
+<p>Obra:{{ programacion.itemPedido.obra }}</p>
+
+
+<a class='button icon add'id="add" href="#">Adicionar</a> 
+
+<form action="/despacho/nuevo/" method="POST">{% csrf_token %}
+     
+    {{ consecutivo_form.as_p}}
+    {{ despacho_formset.management_form }}
+    
+    <table>
+     <tr>
+     <th>Remision</th>
+      <th>Vehiculo</th>
+      <th>Cantidad</th>
+      <th>Fecha</th>
+      <th></th>
+     </tr>
+
+    {% for form in despacho_formset.forms %}
+
+      <tr class='item'>
+      <td>{{ form.remision}} {{ form.remision.errors }}</td>
+      <td>{{ form.vehiculo}} {{ form.vehiculo.errors }}</td>
+      <td>{{ form.cantidad }} {{ form.cantidad.errors }}</td>   
+         <td>{{ form.fecha }} {{ form.fecha.errors }}</td>  
+      <td><p style=""><a class="delete button danger icon trash" href="#">Borrar</a></p></td>
+     </tr>
+
+    {% endfor %}
+     </table>
+     <br>
+    
+  
+
+    <input class='button icon approve' type="submit" value=" Enviar " />
+
 </form>
 
 </section>
+
 
  	
 {% endblock content %}
@@ -24,5 +62,6 @@
 {% block custom_scripts %}
  <link rel="stylesheet" href="/media/libs/grid/pqgrid.min.css">
   <script src="/media/libs/grid/pqgrid.min.js"></script>	
-  <script src="/media/js/init_grid.js"></script>	
+  <script src="/media/js/init_grid.js"></script>
+    <script src="/media/js/pedido.js"></script>	
 {% endblock custom_scripts %}
