@@ -24,7 +24,7 @@ class PedidoForm(ModelForm):
 #Campos que se mostraran
         fields = ('cliente','fechaPedido','fechaEntrega','consecutivo')
 # exclude = ('usuario', 'disponible',) <- Datos que se excluirán. Sirve de la misma manera las dos formas
-
+        widgets = {'fechaPedido':forms.DateInput(format='%Y/%m/%d')}
 
 
 class ItemPedidoForm(ModelForm):

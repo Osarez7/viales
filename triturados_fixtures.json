@@ -221,30 +221,14 @@
         "desc": "Gravilla fina"
     }
 },
-{
-    "pk": 1, 
-    "model": "planta.cliente", 
-    "fields": {
-        "descripcion": "Cusezar", 
-        "nombre": "Cusezar"
-    }
-},
-{
-    "pk": 2, 
-    "model": "planta.cliente", 
-    "fields": {
-        "descripcion": "Tremix", 
-        "nombre": "Tremix"
-    }
-},
+
 {
     "pk": 1, 
     "model": "planta.obra", 
     "fields": {
         "descripcion": "Obra c1", 
         "nombre": "Obra c1", 
-        "cliente": 1, 
-        "disponible": true
+        "cliente": 1
     }
 },
 {
@@ -253,8 +237,7 @@
     "fields": {
         "descripcion": "Obra c2", 
         "nombre": "Obra c2", 
-        "cliente": 2, 
-        "disponible": true
+        "cliente": 2
     }
 },
 {
@@ -263,8 +246,7 @@
     "fields": {
         "descripcion": "Obra t1", 
         "nombre": "Obra t1", 
-        "cliente": 2, 
-        "disponible": true
+        "cliente": 2
     }
 },
 {
@@ -273,15 +255,14 @@
     "fields": {
         "descripcion": "Obra t2", 
         "nombre": "Obra t2", 
-        "cliente": 2, 
-        "disponible": true
+        "cliente": 2
     }
 },
 {
     "pk": 1, 
     "model": "planta.pedido", 
     "fields": {
-        "activo": false, 
+        "pendiente": true, 
         "consecutivo": "1", 
         "fechaEntrega": "2013-04-20", 
         "cliente": 1, 

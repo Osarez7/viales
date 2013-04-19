@@ -13,8 +13,10 @@ class Producto(models.Model):
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=100)
-
+    telefono = models.CharField(max_length=100)
+    direccion = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    precioTransporte = models.BigIntegerField()
     def __unicode__(self):  
         return self.nombre
 
@@ -24,26 +26,26 @@ class Obra(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     cliente = models.ForeignKey(Cliente)
     descripcion = models.TextField()
-    #Cambio hecho por South
-    disponible = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.nombre
 
 class Planta(models.Model):
-    nombre = models.CharField(max_length=100, unique=True)
+    nombre     = models.CharField(max_length=100, unique=True)
     ubicacion  = models.CharField(max_length=200)
-    producto = models.ManyToManyField(Producto)
-    jefe   =  models.OneToOneField(User)
+    producto   = models.ManyToManyField(Producto)
+    jefe       = models.OneToOneField(User)
     def __unicode__(self):
         return self. nombre 
       
 class Pedido(models.Model):
-    cliente = models.ForeignKey(Cliente)
-    fechaPedido = models.DateField()
+
+    cliente      = models.ForeignKey(Cliente)
+    fechaPedido  = models.DateField()
     fechaEntrega = models.DateField()
-    consecutivo = models.CharField(max_length=100, unique=True)
-    activo = models.BooleanField()
+    consecutivo  = models.CharField(max_length=100, unique=True)
+    pendiente    = models.BooleanField(default=True)
+
     def __unicode__(self):
         return self.consecutivo
 
@@ -87,7 +89,7 @@ class Vehiculo(models.Model):
         return self.placa 
 
 class Despacho(models.Model):
-    programacion = models.ForeignKey(Planta) 
+    programacion = models.ForeignKey(Programacion) 
     vehiculo = models.ForeignKey(Vehiculo)
     cantidad = models.IntegerField()
     fecha =  models.DateField()

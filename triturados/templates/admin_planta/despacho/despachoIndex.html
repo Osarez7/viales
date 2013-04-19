@@ -10,23 +10,25 @@
 <section> 
 <h2>Despachos {{ planta.nombre }} </h2>
 
-<a href="/{{ id_planta }}/despacho/nuevo">Nuevo Despacho</a>
+<a  class='button icon add' href="/{{ id_planta }}/despacho/nuevo">Nuevo Despacho</a>
 
 <table class='grid' >
 <tr valign="middle" id="header">
  <th>Remision</th>
-  <th>Fecha</th>
   <th>Cantidad</th>
   <th>Cliente</th>
   <th>Obra</th>
+  <th>Producto</th>
+  <th>Fecha</th>
 </tr>
 {% for despacho in despachos %}
 <tr>
   <td>{{ despacho.remision }}</td>
-  <td>{{ despacho.fecha }}</td>
   <td>{{ despacho.cantidad }}</td>
-  <td></td>
-  <td></td>
+  <td>{{ despacho.programacion.itemPedido.pedido.cliente }}</td>
+  <td>{{ despacho.programacion.itemPedido.obra}}</td>
+  <td>{{ despacho.programacion.itemPedido.producto }}</td>
+  <td>{{ despacho.fecha }}</td>
 </tr>
 
 {% empty %}
